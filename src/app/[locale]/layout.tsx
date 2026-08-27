@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import type { Locale } from "@/content/types";
 import { siteUrl } from "@/site";
+import { StructuredData } from "@/components/StructuredData";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -19,8 +21,8 @@ const geistMono = Geist_Mono({
 
 
 const descriptions: Record<string, string> = {
-  en: "Full-stack software engineer with 8 years building SaaS platforms, payment integrations, and cloud applications. Open to freelance projects, and consulting.",
-  es: "Ingeniero de software full-stack con 8 años construyendo plataformas SaaS, integraciones de pago y aplicaciones en la nube. Abierto a proyectos freelance y consultoría.",
+  en: "Winston Pichardo is a full-stack software engineer with 8 years building SaaS platforms, payment integrations, and cloud applications. Open to freelance projects, and consulting.",
+  es: "Winston Pichardo es un ingeniero de software full-stack con 8 años construyendo plataformas SaaS, integraciones de pago y aplicaciones en la nube. Abierto a proyectos freelance y consultoría.",
 };
 
 export async function generateMetadata({
@@ -74,6 +76,8 @@ export default async function LocaleLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black text-white">
+        <StructuredData locale={locale as Locale} />
+
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

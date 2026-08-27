@@ -1,15 +1,17 @@
 /**
- * Canonical origin for metadata, sitemap and robots.
+ * Canonical origin for metadata, sitemap, robots and structured data.
  *
- * Falls back to the domain Railway injects, so a fresh deploy has correct
- * absolute URLs before a custom domain is configured.
+ * Hardcoded in production so canonical URLs can never silently point at a
+ * platform subdomain, which would split SEO signals across two hosts.
+ * NEXT_PUBLIC_SITE_URL still overrides it for staging or preview deploys.
  *
- * Uses truthiness rather than `??` on purpose: a Docker `ARG` that is never
- * passed still defines the variable as an empty string.
+ * Truthiness rather than `??`: an undeclared Docker ARG still defines the
+ * variable as an empty string.
  */
 const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-const railwayDomain = process.env.RAILWAY_PUBLIC_DOMAIN?.trim();
 
 export const siteUrl =
   configured ||
-  (railwayDomain ? `https://${railwayDomain}` : "http://localhost:3000");
+  (process.env.NODE_ENV === "production"
+    ? "https://www.winstonpichardo.dev"
+    : "http://localhost:3000");

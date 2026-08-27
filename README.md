@@ -6,7 +6,7 @@ My personal site: a bilingual portfolio built around a GPU particle field that
 assembles itself into my initials, with a working shell and a couple of games
 hidden at the bottom for anyone who scrolls that far.
 
-**Live:** [winstonpichardo.dev](https://winstonpichardo.dev/)
+**Live:** [winstonpichardo.dev](https://www.winstonpichardo.dev)
 
 ---
 
