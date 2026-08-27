@@ -1,0 +1,109 @@
+:root {
+  --ink: #16191d;
+  --muted: #5b6572;
+  --rule: #d7dbe0;
+  --accent: #0f7f63;
+}
+
+* { box-sizing: border-box; }
+
+html { background: #eef0f2; }
+
+body {
+  margin: 0;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 9.7pt;
+  line-height: 1.33;
+  color: var(--ink);
+}
+
+.page {
+  width: 8.5in;
+  margin: 0 auto;
+  padding: 0.45in 0.5in;
+  background: #fff;
+}
+
+header { border-bottom: 2px solid var(--ink); padding-bottom: 7px; }
+
+h1 { margin: 0; font-size: 21pt; letter-spacing: -0.4px; font-weight: 700; }
+
+.role {
+  margin: 1px 0 6px;
+  font-size: 10.4pt;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.contact {
+  font-size: 8.6pt;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 9px;
+}
+.contact a { color: var(--muted); text-decoration: none; }
+.contact .sep { color: var(--rule); }
+
+.summary { margin: 9px 0 0; font-size: 9.5pt; }
+
+h2 {
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  color: var(--accent);
+  margin: 13px 0 6px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.job { margin-bottom: 8px; break-inside: avoid; }
+
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.job-title { font-weight: 700; font-size: 10pt; }
+.job-org { font-weight: 700; }
+.job-meta { font-size: 8.4pt; color: var(--muted); white-space: nowrap; }
+.job-sub { font-size: 8.9pt; color: var(--muted); margin: 0 0 3px; }
+
+ul { margin: 0; padding-left: 14px; }
+li { margin-bottom: 1.5px; }
+li::marker { color: var(--accent); }
+
+.metric { font-weight: 700; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 2px 12px;
+  font-size: 9.1pt;
+}
+.skills-grid dt { font-weight: 700; }
+.skills-grid dd { margin: 0; color: #2c333c; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 26px;
+  font-size: 9.1pt;
+}
+
+.edu-item { margin-bottom: 5px; }
+.cert { display: flex; justify-content: space-between; gap: 10px; }
+.cert span:last-child { color: var(--muted); white-space: nowrap; }
+
+.earlier { font-size: 9.1pt; color: #2c333c; }
+.earlier div { margin-bottom: 2.5px; }
+
+@media print {
+  html, body { background: #fff; }
+  /* Margins live on @page so every sheet gets them, not just the first */
+  .page { width: auto; margin: 0; padding: 0; }
+  @page { size: Letter; margin: 0.45in 0.5in; }
+}
