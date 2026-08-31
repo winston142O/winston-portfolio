@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 
 
 const descriptions: Record<string, string> = {
-  en: "Winston Pichardo is a full-stack software engineer with 8 years building SaaS platforms, payment integrations, and cloud applications. Open to freelance projects, and consulting.",
-  es: "Winston Pichardo es un ingeniero de software full-stack con 8 años construyendo plataformas SaaS, integraciones de pago y aplicaciones en la nube. Abierto a proyectos freelance y consultoría.",
+  en: "Winston Pichardo, full-stack software engineer in Santo Domingo, Dominican Republic. 8 years building SaaS platforms, payment systems and cloud apps. Open for freelance work.",
+  es: "Winston Pichardo, ingeniero de software full-stack en Santo Domingo, República Dominicana. 8 años construyendo plataformas SaaS, sistemas de pago y aplicaciones en la nube. Disponible para proyectos freelance.",
 };
 
 export async function generateMetadata({
