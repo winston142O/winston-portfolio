@@ -72,7 +72,7 @@ export const careerNodes: CareerNode[] = [
       es: "Líder de Ingeniería Backend y DBA",
     },
     start: "2023-12",
-    end: null,
+    end: "2026-02",
     mode: { en: "Remote (US)", es: "Remoto (EE. UU.)" },
     summary: {
       en: "Software ecosystem that runs a US custom awning manufacturer end to end: jobs, engineering, installation routing, inventory, shop floor automation, and an AI agents service on top.",
