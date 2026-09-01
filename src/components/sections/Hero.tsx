@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { profile } from "@/content/profile";
+import { ScrollCue } from "@/components/ScrollCue";
 
 export async function Hero() {
   const t = await getTranslations("Hero");
@@ -32,6 +33,8 @@ export async function Hero() {
           </a>
         </div>
       </div>
+
+      <ScrollCue />
     </section>
   );
 }
