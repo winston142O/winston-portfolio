@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;800&family=Geist+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+ *{margin:0;padding:0;box-sizing:border-box}
+ html,body{background:transparent}
+ body{width:760px;height:520px;display:flex;align-items:center;justify-content:center;
+      font-family:'Geist',-apple-system,Helvetica,sans-serif}
+ .L{text-align:center;white-space:nowrap}
+ .mk{font-weight:800;letter-spacing:-.05em;line-height:.76;font-size:150px}
+ .mk .sq{display:inline-block;background:#10b981;width:27px;height:27px;margin-left:15px}
+ .nm{font-weight:800;font-size:37.5px;line-height:1;margin-top:27px}
+ .tag{font-weight:500;font-size:20.5px;margin-top:14px}
+ .bar{margin-top:18px;background:#10b981;padding:12px 0;
+      font:700 23px/1 'Geist Mono',ui-monospace,monospace;color:#04140d;letter-spacing:.02em}
+ /* ink colour set per render */
+ .ink .mk,.ink .nm{color:var(--ink)} .ink .tag{color:var(--ink2)}
+</style></head><body>
+<div class="L ink" id="lock">
+  <div class="mk">wp<span class="sq"></span></div>
+  <div class="nm">WINSTON PICHARDO</div>
+  <div class="tag">Software a la medida para tu negocio</div>
+  <div class="bar">winstonpichardo.dev</div>
+</div>
+<script>
+ const p = new URLSearchParams(location.search);
+ const dark = p.get('v') === 'dark';   // artwork for dark backgrounds
+ document.getElementById('lock').style.setProperty('--ink',  dark ? '#ffffff' : '#0b0d0c');
+ document.getElementById('lock').style.setProperty('--ink2', dark ? '#e7e7ea' : '#27272a');
+</script>
+</body></html>
