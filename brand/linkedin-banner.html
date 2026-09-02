@@ -1,0 +1,105 @@
+<!doctype html>
+<html><head><meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1584px; height:396px; overflow:hidden; background:#000; }
+  #stage { position:relative; width:1584px; height:396px; background:#000; }
+  canvas { position:absolute; inset:0; width:1584px; height:396px; }
+  .copy {
+    position:absolute; left:812px; top:0; height:396px; width:700px;
+    display:flex; flex-direction:column; justify-content:center;
+    font-family:'Geist', -apple-system, Helvetica, sans-serif; color:#fff;
+  }
+  .eyebrow {
+    font-family:'Geist Mono', ui-monospace, Menlo, monospace;
+    font-size:13px; font-weight:500; letter-spacing:.34em;
+    text-transform:uppercase; color:#34d399; margin-bottom:16px;
+  }
+  h1 { font-size:52px; font-weight:700; letter-spacing:-.022em; line-height:1.06; }
+  .sub {
+    margin-top:16px; font-size:19px; font-weight:400; line-height:1.45;
+    color:#a3a3a3; max-width:600px;
+  }
+  .url {
+    position:absolute; right:196px; bottom:34px;
+    font-family:'Geist Mono', ui-monospace, Menlo, monospace;
+    font-size:14px; letter-spacing:.08em; color:#6b7280;
+  }
+  .url b { color:#34d399; font-weight:400; }
+</style></head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div class="copy">
+    <div class="eyebrow">Software Engineer</div>
+    <h1>Software people<br/>depend on.</h1>
+    <div class="sub">Full-stack engineer.</div>
+  </div>
+  <div class="url">winstonpichardo<b>.dev</b></div>
+</div>
+<script>
+const W = 1584, H = 396, S = 2;
+const c = document.getElementById('c');
+c.width = W * S; c.height = H * S;
+const x = c.getContext('2d');
+x.scale(S, S);
+
+// deterministic RNG so re-runs produce the same banner
+let seed = 20260901;
+const rnd = () => (seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296;
+
+// one particle drawn the way the site draws them: a short segment along its
+// own velocity, which is what reads as a motion streak instead of a dot
+function streak(px, py, len, ang, alpha, wid) {
+  x.strokeStyle = `rgba(52,211,153,${alpha})`;
+  x.lineWidth = wid;
+  x.beginPath();
+  x.moveTo(px, py);
+  x.lineTo(px + Math.cos(ang) * len, py + Math.sin(ang) * len);
+  x.stroke();
+}
+
+x.fillStyle = '#000'; x.fillRect(0, 0, W, H);
+x.globalCompositeOperation = 'lighter';   // additive, same as the hero's glow
+
+// ambient drift, densest on the left where the mark sits
+for (let i = 0; i < 1500; i++) {
+  const px = Math.pow(rnd(), 1.5) * W;
+  const py = rnd() * H;
+  const edge = Math.min(1, Math.min(py, H - py) / 90);
+  streak(px, py, 4 + rnd() * 14, (rnd() - 0.5) * 0.9,
+         (0.05 + rnd() * 0.16) * edge, 0.6 + rnd() * 0.5);
+}
+
+// the WP mark, sampled from rendered text exactly like makeTargets() does
+const off = document.createElement('canvas');
+off.width = W; off.height = H;
+const o = off.getContext('2d');
+o.fillStyle = '#fff';
+o.font = '700 224px Geist, Helvetica, sans-serif';
+o.textAlign = 'center'; o.textBaseline = 'middle';
+o.fillText('WP', 512, 176);
+
+const px32 = o.getImageData(0, 0, W, H).data;
+for (let py = 0; py < H; py += 2) {
+  for (let pxx = 0; pxx < W; pxx += 2) {
+    if (px32[(py * W + pxx) * 4 + 3] < 128) continue;
+    if (rnd() > 0.5) continue;
+    streak(pxx + (rnd() - 0.5) * 5, py + (rnd() - 0.5) * 5,
+           3 + rnd() * 11, (rnd() - 0.5) * 1.3,
+           0.11 + rnd() * 0.3, 0.7 + rnd() * 0.6);
+  }
+}
+
+// fade the mark out toward the copy so the text never fights the particles
+x.globalCompositeOperation = 'destination-out';
+const g = x.createLinearGradient(650, 0, 880, 0);
+g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)');
+x.fillStyle = g; x.fillRect(650, 0, 230, H);
+x.globalCompositeOperation = 'source-over';
+document.title = 'ready';
+</script>
+</body></html>
