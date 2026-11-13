@@ -5,25 +5,40 @@ export const careerNodes: CareerNode[] = [
     id: "origami-risk",
     kind: "job",
     company: "Origami Risk",
-    role: { en: "Full Stack Engineer", es: "Ingeniero Full Stack" },
+    role: {
+      en: "Full Stack Engineer, AI Modernization",
+      es: "Ingeniero Full Stack, Modernización con IA",
+    },
     start: "2026-02",
     end: null,
     mode: { en: "Hybrid", es: "Híbrido" },
     summary: {
-      en: "Enterprise-grade risk management platform for complex insurance and risk data.",
-      es: "Plataforma empresarial de gestión de riesgos para datos complejos de seguros.",
+      en: "Enterprise insurance and risk management SaaS platform for complex policy, billing and claims data.",
+      es: "Plataforma SaaS empresarial de seguros y gestión de riesgos para datos complejos de pólizas, facturación y reclamos.",
     },
     highlights: [
       {
-        en: "Develop and maintain platform features across the full stack with .NET (C#) and React.",
-        es: "Desarrollo y mantengo funcionalidades de la plataforma en todo el stack con .NET (C#) y React.",
+        en: "Build and extend core policy administration logic in C#/.NET, including rating, out-of-sequence endorsements and renewal rules.",
+        es: "Construyo y extiendo la lógica central de administración de pólizas en C#/.NET, incluyendo tarificación, endosos fuera de secuencia y reglas de renovación.",
       },
       {
-        en: "Optimize application performance and database interactions in a large-scale SaaS platform.",
-        es: "Optimizo el rendimiento de la aplicación y las interacciones con la base de datos en una plataforma SaaS de gran escala.",
+        en: "Develop frontend features for core insurance workflows, making complex processes faster and easier for end users.",
+        es: "Desarrollo funcionalidades frontend para flujos clave de seguros, haciendo procesos complejos más rápidos y fáciles para los usuarios.",
+      },
+      {
+        en: "Own database changes end to end with Flyway migrations, keeping schema models in sync across environments.",
+        es: "Gestiono cambios de base de datos de punta a punta con migraciones Flyway, manteniendo los modelos de esquema sincronizados entre ambientes.",
+      },
+      {
+        en: "Built background processing workflows with Temporal, orchestrating long-running jobs with automatic retries and fault tolerance.",
+        es: "Construí flujos de procesamiento en segundo plano con Temporal, orquestando tareas de larga duración con reintentos automáticos y tolerancia a fallos.",
+      },
+      {
+        en: "Built AI-assisted developer tooling, including an Azure DevOps MCP integration and automated ticket documentation, that speeds up investigation and knowledge sharing.",
+        es: "Construí herramientas de desarrollo asistidas por IA, incluyendo una integración MCP con Azure DevOps y documentación automatizada de tickets, que agilizan la investigación y el intercambio de conocimiento.",
       },
     ],
-    tech: [".NET", "C#", "React", "SQL Server"],
+    tech: [".NET", "C#", "React", "SQL Server", "Flyway", "Temporal", "Azure DevOps", "MCP"],
   },
   {
     id: "thryv",
